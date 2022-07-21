@@ -1,0 +1,74 @@
+<head><!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<header>
+    <h1>Todo List</h1> 
+    <small>Sorted by completion status, ordered by date</small>
+    <a href="{% url 'add_todo' %}"><button type="button" class="btn btn-primary" style="margin-left: 240px ;">Click here to add the task!</button>
+   
+</header>
+
+<body>
+    <div class="list-group">
+      <!-- <h3>To-do Tasks</h3> -->
+      {% for t in todo %}
+      {% if not t.done_status %}
+      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-4">{{ t.task_title }}</h5>
+            <small>Completion date: {{ t.to_be_date }}</small>
+          </div>
+          <p class="mb-1">Description: {{ t.task_description|linebreaksbr }}</p>
+          <small>Status: If completed/not: {{t.done_status}}</small>
+          <a href="{% url 'delete' id=t.id %}"><button type="button" class="btn btn-danger" style="margin-left:10px ;">Delete task</button>
+          <a href="{% url 'update' id=t.id %}"><button type="button" class="btn btn btn-success" style="margin-left: 60px ;">Update the status</button>
+          <a href="{% url 'edit' id=t.id %}"><button type="button" class="btn btn-info" style="margin-left: 140px ;">Edit Description</button>
+        </a>
+        
+        <br>
+   
+    
+      {%endif %}
+      {% endfor %}   
+
+      <h3>Completed Tasks</h3>
+
+      {% for t in todo %}
+      {% if t.done_status %}
+      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-4">{{ t.task_title }}</h5>
+            <small>Completion date: {{ t.to_be_date }}</small>
+          </div>
+          <p class="mb-1">Description: {{ t.task_description|linebreaksbr }}</p>
+          <small>Status: If completed/not: {{t.done_status}}</small>
+          <a href="{% url 'delete' id=t.id %}"><button type="button" class="btn btn-danger" style="margin-left: 10px ;">Delete task</button>
+          <a href="{% url 'update_not_completed' id=t.id %}"><button type="button" class="btn btn-success" style="margin-left: 60px ;">Update the status</button>
+          <a href="{% url 'edit' id=t.id %}"><button type="button" class="btn btn-info" style="margin-left: 140px ;">Edit Description</button>
+          
+        </a>
+        
+        <br>
+    {% endif %}
+    {% endfor %} 
+    
+   
+  
+    
+         
+  </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+    

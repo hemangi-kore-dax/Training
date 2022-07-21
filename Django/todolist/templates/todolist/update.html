@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid rgb(0, 255, 76);
+  
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+
+    <form method="POST" style="text-align: center; ">
+        {%csrf_token%}
+        <br>
+        {% for todo in todos %}
+            <div class="form-group">
+                <label for="title">Title(Todo):</label>
+                <input type="text" name="task_title" class="form-control" id="task_title" placeholder={{todo.task_title}} aria-describedby="titleHelp" >
+
+            </div>
+            <br> <br>
+
+            <div class="form-group">
+                <label for="description">Description: </label>
+                <input type="text" name="task_description" class="form-control" id="task_description" placeholder={{todo.task_description}} aria-describedby="descriptionHelp" >
+
+            </div>
+            <br> <br>
+
+            <label for="date">Completion Date:</label><br>
+            <input type="date" id="to_be_date" placeholder={{todo.to_be_date}} name="to_be_date">
+            <br> <br>
+
+            <button type="submit" a href="{% url 'edit' id=todo.id %}" class="btn btn-primary">Update</button>
+
+        {% endfor %}
+    </form>
+</body>
+</html>

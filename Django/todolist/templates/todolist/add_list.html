@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+input[type=text] {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid rgb(0, 255, 76);
+  
+  border-radius: 4px;
+}
+</style>
+</head>
+<body>
+<form method="POST" style="text-align: center; ">
+    {%csrf_token%}
+    <br>
+    <label for="title">Title(Todo):</label>
+    <input type="text" id="task_title" name="task_title">
+    <br>
+    <br>
+
+    <label for="details">Description:</label>
+    <input type="text" id="task_description" name="task_description">
+    <br>
+    <br>
+    
+    <label for="date">Completion Date:</label>
+    <input type="date" id="to_be_date" name="to_be_date">
+    <br>
+    <br>
+
+    <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>
