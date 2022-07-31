@@ -5,6 +5,7 @@
 #include<sstream>
 #include<iomanip>
 
+// while running the code, pass sample_input.txt as arg.
 using namespace std;
 
 string removeSpaces(string &str){
