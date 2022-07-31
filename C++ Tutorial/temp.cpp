@@ -4,6 +4,7 @@
 #include<String>
 #include<sstream>
 #include<iomanip>
+
 using namespace std;
 
 string removeSpaces(string &str){
@@ -79,9 +80,42 @@ vector<string> printWords(string str)
     while (iss >> word)
         res.push_back(word);
 
-	return res;
+	return res; 
 		
 }
+string format_name(string ip1, string ip2)
+{
+	int fix=30;
+	string final_name;
+	string concat_name=ip1+" "+ip2;
+	int len=concat_name.length();
+	int pad_len=fix-len;
+	// cout<<concat_name<<setw(pad_len);
+	string sp=" ";
+	final_name=concat_name;
+	for(int i=0;i<pad_len;i++)
+	{
+		final_name=final_name+sp ;
+	}
+	return final_name;
+}
+
+string format_address1(string ip1, string ip2)
+{
+	int fix=25;
+	string concat_addr=ip1+" "+ip2;
+	int len=concat_addr.length();
+	int pad_len=fix-len;
+	string final_add1=concat_addr;
+	for(int i=0;i<pad_len;i++)
+	{
+		final_add1=final_add1+" " ;
+	}
+	return final_add1;
+	
+}
+
+
 
 int main(int argc, char *argv[])
 {
@@ -114,11 +148,11 @@ int main(int argc, char *argv[])
 			string tmp=removeSpaces(g1[i]);
 			newvect.push_back(tmp);
 		}
-		cout<<endl;
-		for (string i : newvect) 
-		{
-			cout << i <<endl;
-		}
+		// cout<<endl;
+		// for (string i : newvect) 
+		// {
+		// 	cout << i <<endl;
+		// }
 		for(int i=0; i<newvect.size(); i++)
 		{
 			vector<string> temp = printWords(newvect[i]);
@@ -131,7 +165,8 @@ int main(int argc, char *argv[])
         //         cout<<wordvect[i][j]<<endl;
         //     }
         // }
-		cout<<endl;
+		
+		cout<<"Envelope:"<<endl;
         for(int i=0; i<wordvect.size(); i++)
         {
             cout<<wordvect[i][1]<<" "<<wordvect[i][0]<<","<<endl;
@@ -139,15 +174,19 @@ int main(int argc, char *argv[])
             cout<<wordvect[i][6]<<" "<<wordvect[i][7]<<wordvect[i][8]<<endl;
             cout<<endl;
         }	
+		cout<<"Fixed format:"<<endl;
+		
         for(int i=0; i<wordvect.size(); i++)
         {	
-			
-            cout<<wordvect[i][1]<<" "<<wordvect[i][0]<<" ";
-            cout<<wordvect[i][4]<<" "<<wordvect[i][5]<<" ";
+			cout<<format_name(string(wordvect[i][1]), string(wordvect[i][0]));
+			cout<<format_address1(string(wordvect[i][4]),string(wordvect[i][5]));
+			// cout<<wordvect[i][1]<<" "<<wordvect[i][0]<<" ";
+            // cout<<wordvect[i][4]<<" "<<wordvect[i][5]<<" ";
             cout<<wordvect[i][6]<<" "<<wordvect[i][7]<<" "<<wordvect[i][8]<<endl;
             cout<<endl;
         }
-       
+       cout<<"Fixed format with CSV:"<<endl;
+	   
         for(int i=0; i<wordvect.size();i++)
         {
             cout<<'"'<<wordvect[i][1]<<" "<<wordvect[i][0]<<'"'<<",";
